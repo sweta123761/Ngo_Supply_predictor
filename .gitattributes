@@ -1,1 +1,5 @@
+# Handle line endings
 * text=auto
+
+# Exclude virtual environments from Git (for safety, not related to line endings)
+venv/ export-ignore
