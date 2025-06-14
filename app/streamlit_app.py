@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import joblib
 import numpy as np
@@ -5,8 +6,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# === Safe relative paths using __file__ ===
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'model', 'supply_model.pkl')
+CSV_PATH = os.path.join(BASE_DIR, '..', 'data', 'ngo_fake_data.csv')
+
 # Load the model
-pipeline = joblib.load("../model/supply_model.pkl")
+pipeline = joblib.load(MODEL_PATH)
 
 model = pipeline["model"]
 scaler = pipeline["scaler"]
@@ -70,7 +76,7 @@ if st.button("🔍 Predict Shortages"):
             st.success("✅ *No supply shortages predicted*.")
 
 # Load the dataset for visualization
-sample_data = pd.read_csv("../data/ngo_fake_data.csv")
+sample_data = pd.read_csv(CSV_PATH)
 
 # Generate a simple bar plot for average stock levels by location
 st.markdown("""
