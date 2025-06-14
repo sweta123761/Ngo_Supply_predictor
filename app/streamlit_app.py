@@ -6,10 +6,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# === Safe relative paths using __file__ ===
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, '..', 'model', 'supply_model.pkl')
-CSV_PATH = os.path.join(BASE_DIR, '..', 'data', 'ngo_fake_data.csv')
+# === Use relative paths compatible with Streamlit Cloud ===
+MODEL_PATH = "model/supply_model.pkl"
+CSV_PATH = "data/ngo_fake_data.csv"
 
 # Load the model
 pipeline = joblib.load(MODEL_PATH)
@@ -19,7 +18,6 @@ scaler = pipeline["scaler"]
 mlb = pipeline["mlb"]
 le_location = pipeline["le_location"]
 le_crisis = pipeline["le_crisis"]
-
 # Set the title of the app
 st.title("NGO Supply Shortage Predictor")
 
